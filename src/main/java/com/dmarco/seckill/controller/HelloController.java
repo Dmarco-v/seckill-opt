@@ -3,6 +3,7 @@ package com.dmarco.seckill.controller;
 
 import com.dmarco.seckill.domain.User;
 import com.dmarco.seckill.redis.RedisService;
+import com.dmarco.seckill.redis.UserKey;
 import com.dmarco.seckill.result.CodeMsg;
 import com.dmarco.seckill.result.Result;
 import com.dmarco.seckill.service.UserService;
@@ -58,17 +59,26 @@ public class HelloController {
 
     @RequestMapping("/redis/get")
     @ResponseBody
-    public Result<Long> redisGet(){
-        Long res = redisService.get("key1",Long.class);
-        return Result.success(res);
+    public Result<User> redisGet(){
+        User user = redisService.get(UserKey.getById,""+1,User.class);
+        return Result.success(user);
     }
 
     @RequestMapping("/redis/set")
     @ResponseBody
-    public Result<String> redisSet(){
-        redisService.set("key2","Hello,Redis");
-        String str= redisService.get("key2",String.class);
-        return Result.success(str);
+    public Result<Boolean> redisSet(){
+        User user=new User();
+        user.setId(1);
+        user.setName("Tom");
+        Boolean res=redisService.set(UserKey.getById,""+1,user);
+        return Result.success(res);
+    }
+
+    @RequestMapping("/redis/exists")
+    @ResponseBody
+    public Result<Boolean> redisExists(){
+        Boolean exists=redisService.exists(UserKey.getById,""+1);
+        return Result.success(exists);
     }
 
 }

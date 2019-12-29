@@ -15,11 +15,20 @@ public class RedisService {
     @Autowired
     JedisPool jedisPool;
 
-    public <T> T get(String key,Class<T> clazz){
+    /**
+     * 获取单个对象
+     * @param prefix
+     * @param key
+     * @param clazz
+     * @param <T>
+     * @return
+     */
+    public <T> T get(KeyPrefix prefix, String key,Class<T> clazz){
         Jedis jedis = null;
         try{
             jedis=jedisPool.getResource();
-            String str= jedis.get(key);
+            String realKey=prefix.getPrefix()+key;
+            String str= jedis.get(realKey);
             T t=stringToBean(str,clazz);
             return t;
         }finally {
@@ -27,7 +36,15 @@ public class RedisService {
         }
     }
 
-    public <T> Boolean set(String key,T value){
+    /**
+     * 设置对象
+     * @param prefix
+     * @param key
+     * @param value
+     * @param <T>
+     * @return
+     */
+    public <T> Boolean set(KeyPrefix prefix,String key,T value){
         Jedis jedis = null;
         try{
             jedis=jedisPool.getResource();
@@ -35,8 +52,69 @@ public class RedisService {
             if(str==null || str.length()<=0){
                 return false;
             }
-            jedis.set(key,str);
+            String realKey=prefix.getPrefix()+key;
+            int expireSeconds=prefix.expireSeconds();
+            if(expireSeconds<=0){
+                jedis.set(realKey,str);
+            }else{
+                jedis.setex(realKey,expireSeconds,str);
+            }
             return true;
+        }finally {
+            returnToPool(jedis);
+        }
+    }
+
+    /**
+     * 判断key是否存在
+     * @param prefix
+     * @param key
+     * @param <T>
+     * @return
+     */
+    public <T> Boolean exists(KeyPrefix prefix,String key){
+        Jedis jedis = null;
+        try{
+            jedis=jedisPool.getResource();
+            String realKey=prefix.getPrefix()+key;
+            jedis.exists(realKey);
+            return true;
+        }finally {
+            returnToPool(jedis);
+        }
+    }
+
+    /**
+     * 增加值
+     * @param prefix
+     * @param key
+     * @param <T>
+     * @return
+     */
+    public <T> Long incr(KeyPrefix prefix,String key){
+        Jedis jedis = null;
+        try{
+            jedis=jedisPool.getResource();
+            String realKey=prefix.getPrefix()+key;
+            return jedis.incr(realKey);
+        }finally {
+            returnToPool(jedis);
+        }
+    }
+
+    /**
+     * 减少值
+     * @param prefix
+     * @param key
+     * @param <T>
+     * @return
+     */
+    public <T> Long decr(KeyPrefix prefix,String key){
+        Jedis jedis = null;
+        try{
+            jedis=jedisPool.getResource();
+            String realKey=prefix.getPrefix()+key;
+            return jedis.decr(realKey);
         }finally {
             returnToPool(jedis);
         }
