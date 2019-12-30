@@ -50,7 +50,7 @@
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../seckill" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/templates" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.31801692" />
@@ -61,6 +61,7 @@
       <recent name="com.dmarco.seckill.vo" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\IDEAWorkSpace\seckillopt\src\main\resources\templates" />
       <recent name="D:\IDEAWorkSpace\seckillopt\src\main\resources" />
       <recent name="D:\IDEAWorkSpace\seckillopt\src" />
     </key>
@@ -144,7 +145,7 @@
       <workItem from="1577449551527" duration="876000" />
       <workItem from="1577450461282" duration="779000" />
       <workItem from="1577452084220" duration="1492000" />
-      <workItem from="1577455359390" duration="21078000" />
+      <workItem from="1577455359390" duration="29958000" />
     </task>
     <servers />
   </component>
