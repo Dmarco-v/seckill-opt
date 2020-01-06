@@ -32,9 +32,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
-        <option value="Interface" />
         <option value="AnnotationType" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -57,16 +57,22 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="com.dmarco.seckill.vo" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\IDEAWorkSpace\seckillopt\src\main" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\IDEAWorkSpace\seckillopt\src\main\resources\templates" />
+      <recent name="D:\IDEAWorkSpace\seckillopt\src\main\resources\static\img" />
+      <recent name="D:\IDEAWorkSpace\seckillopt\src\main\java\com\dmarco\seckill\domain" />
       <recent name="D:\IDEAWorkSpace\seckillopt\src\main\resources" />
       <recent name="D:\IDEAWorkSpace\seckillopt\src" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\IDEAWorkSpace\seckillopt\src\main" />
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.dmarco.seckill.controller" />
+      <recent name="com.dmarco.seckill.dao" />
+    </key>
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.dmarco.seckill.vo" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -145,7 +151,8 @@
       <workItem from="1577449551527" duration="876000" />
       <workItem from="1577450461282" duration="779000" />
       <workItem from="1577452084220" duration="1492000" />
-      <workItem from="1577455359390" duration="29958000" />
+      <workItem from="1577455359390" duration="36933000" />
+      <workItem from="1578274998739" duration="22227000" />
     </task>
     <servers />
   </component>

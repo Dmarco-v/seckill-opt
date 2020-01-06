@@ -42,7 +42,7 @@ public class SeckillUserService {
         SeckillUser user=redisService.get(SeckillUserKey.token,token,SeckillUser.class);
         //延长有效期
         if(user!=null){
-            addCookie(response,user);
+            addCookie(response,token,user);
         }
         return user;
     }
@@ -66,15 +66,15 @@ public class SeckillUserService {
             throw new GlobalException(CodeMsg.PASSWORD_WRONG);
         }
         //生成cookie
-        addCookie(response,user);
+        String token = UUIDUtil.uuid();
+        addCookie(response,token,user);
 
         return true;
     }
 
-    private void addCookie(HttpServletResponse response,SeckillUser user){
+    private void addCookie(HttpServletResponse response,String token,SeckillUser user){
         // 生成token用于标识用户，将其存入redis并写到cookie中;
         // 用户随后的请求中上传cookie，服务端根据拿到的token在redis中拿到用户信息。
-        String token = UUIDUtil.uuid();
         redisService.set(SeckillUserKey.token,token,user);
         Cookie cookie=new Cookie(COOKIE_NAME_TOKEN,token);
         cookie.setMaxAge(SeckillUserKey.token.expireSeconds());

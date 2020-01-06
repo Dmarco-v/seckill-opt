@@ -23,6 +23,11 @@ public class CodeMsg {
     public static CodeMsg PASSWORD_WRONG = new CodeMsg(500215,"密码错误");
 
 
+    //秒杀模块 5005XX
+    public static CodeMsg SECKILL_OVER= new CodeMsg(500500,"商品已被抢购一空");
+    public static CodeMsg SECKILL_REPEAT= new CodeMsg(500501,"超出限购要求");
+
+
 
 
     private CodeMsg(int code, String msg) {
